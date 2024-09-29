@@ -1,7 +1,4 @@
-from datetime import date
-from typing import Optional, List, Any, Sequence
 
-from fastapi import HTTPException, status
 from sqlalchemy import select, Row, RowMapping
 from sqlalchemy.exc import IntegrityError, NoResultFound
 from sqlalchemy.ext.asyncio import AsyncSession

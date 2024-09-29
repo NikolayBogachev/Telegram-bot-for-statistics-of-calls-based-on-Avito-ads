@@ -1,6 +1,5 @@
 
 import os
-
 from pydantic.v1 import BaseSettings
 
 

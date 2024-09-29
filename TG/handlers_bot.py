@@ -8,9 +8,8 @@ from aiogram.filters import CommandStart, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery, ForceReply, InputFile, FSInputFile
 from loguru import logger
-from openpyxl.workbook import Workbook
 
-from TG.StatesGroup import AddTokenState
+from TG.statesgroup import AddTokenState
 from TG.auth import generate_key, encrypt_token, decrypt_token
 from TG.bot import bot
 from TG.funcs_tg import parse_statistics, create_xlsx_report, get_user_id
@@ -47,6 +46,7 @@ async def delete_user_messages(user_id: int):
 
         # Очищаем записи сообщений пользователя, кроме сообщения с клавиатурой
         user_messages[user_id] = [msg_id for msg_id in user_messages[user_id] if msg_id not in user_messages.get('keyboard_message_ids', [])]
+
 
 @router.message(CommandStart())
 async def command_start_handler(message: Message):

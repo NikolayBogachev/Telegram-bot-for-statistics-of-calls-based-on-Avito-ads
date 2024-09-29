@@ -4,15 +4,19 @@ services:
   bot:
     build: .
     volumes:
-      - .:/app
+      - ./database:/app/database
+      - ./TG:/app/TG
+      - ./.env:/app/.env
+      - ./config.py:/app/config.py
+      - ./main_bot.py:/app/main_bot.py
     restart: always
     environment:
-      - URL_DB=postgresql+asyncpg://nikolay:1234@postgres:5432/bot_db
+      - DATABASE_URL=postgresql+asyncpg://nikolay:1234@postgres:5432/diploma_db
     depends_on:
       - postgres
 
   postgres:
-    image: postgres:latest
+    image: postgres:17
     container_name: postgres
     restart: always
     environment:
@@ -20,6 +24,6 @@ services:
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: diploma_db
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
